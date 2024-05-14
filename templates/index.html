@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Movie-Review</title>
+    </head>
+
+    <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-1/2">
+            <h1 class="text-4xl font-bold mb-4 text-center">
+                Movie Review Sentiment Analysis
+            </h1>
+
+            <form action="/predict" method="post" class="space-y-4">
+                <label
+                    for="review"
+                    class="block text-xl font-medium text-gray-600"
+                    >Enter your movie review:</label
+                >
+                <textarea
+                    id="review"
+                    name="review"
+                    rows="4"
+                    cols="50"
+                    class="border p-2 w-full rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                ></textarea>
+
+                <div class="flex justify-center">
+                    <input
+                        type="submit"
+                        value="Submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 cursor-pointer"
+                    />
+                </div>
+            </form>
+
+            {% if review %}
+            <div class="mt-8">
+                <p class="text-xl font-semibold mb-2">Your review:</p>
+                <p class="text-gray-700">{{ review }}</p>
+
+                <p class="text-xl font-semibold mt-4">Sentiment:</p>
+                {% if sentiment == 'Positive' %}
+                <p class="text-green-500 text-xl">{{ sentiment }}</p>
+                {% else %}
+                <p class="text-red-500 text-xl">{{ sentiment }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
